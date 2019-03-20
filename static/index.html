@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
     <script>
-      // SCREWU: use test API keys
-      let SCREWU = true;
       if (
         window.location.protocol == 'http:' &&
         window.location.hostname != 'localhost'
@@ -16,6 +14,8 @@
         window.location.protocol = 'https:';
       }
 
+      // SCREWU: use test API keys
+      let SCREWU = true;
       if (window.location.hostname != 'localhost') {
         SCREWU = false;
       }
@@ -109,91 +109,5 @@
     <script src="https://js.quid.works/v1/client.js"></script>
     <script src="pennyjarjs.js"></script>
     <script src="index.js"></script>
-    <script>
-      function showError(message) {
-        const errorEl = document.getElementById('error');
-        if (message && message !== '') {
-          console.error(message);
-        }
-
-        errorEl.innerText = message || '';
-        errorEl.classList.remove('animate-beat');
-        errorEl.classList.add('animate-beat');
-      }
-
-      const jarBuilder = new pennyjarjs.JarBuilder();
-      const spinnerEl = document.getElementById('spinner');
-      let thisJar;
-
-      const newEl = document.getElementById('new');
-      const helljarEl = document.getElementsByClassName('helljar')[0];
-      const codeEl = document.getElementById('code');
-      const buttEl = document.getElementsByClassName('butt')[0];
-      newEl.addEventListener('click', () => {
-        helljarEl.style.display = 'none';
-        spinnerEl.style.display = 'block';
-        jarBuilder
-          .create()
-          .then(jar => {
-            buttEl.style.display = 'block';
-            thisJar = jar;
-            window.history.pushState(
-              'object or string',
-              'This is our swear jar',
-              `?code=${thisJar.code}`
-            );
-            // codeEl.innerText = thisJar.code;
-            jsSocials.setDefaults('twitter', {
-              logo: 'fab fa-twitter'
-            });
-            jsSocials.setDefaults('facebook', {
-              logo: 'fab fa-facebook'
-            });
-            $('#shareIcons').jsSocials({
-              showLabel: false,
-              showCount: false,
-              shares: ['email', 'twitter', 'facebook']
-            });
-          })
-          .catch(e => {
-            helljarEl.style.display = 'block';
-            showError('Yikes! Trouble at home base.');
-          })
-          .finally(() => {
-            spinnerEl.style.display = 'none';
-          });
-      });
-
-      const amountEl = document.getElementById('amount');
-      const fuckEl = document.getElementById('fuck');
-      const godEl = document.getElementById('god');
-      init({
-        el: fuckEl,
-        onLoad: () => {
-          spinnerEl.style.display = 'none';
-          fuckEl.style.display = 'block';
-          godEl.style.display = 'flex';
-        },
-        onPay: receipt => {
-          spinnerEl.style.display = 'block';
-          showError('');
-          thisJar
-            .donate('me', receipt)
-            .then(resp => {
-              if (resp.success) {
-                amountEl.innerText = '$' + thisJar.total.toFixed(2);
-              } else {
-                showError('Yikes! Trouble at home base.');
-              }
-            })
-            .catch(e => {
-              showError('Yikes! Trouble at home base.');
-            })
-            .finally(() => {
-              spinnerEl.style.display = 'none';
-            });
-        }
-      });
-    </script>
   </body>
 </html>

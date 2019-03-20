@@ -1,0 +1,274 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Righteous', cursive;
+
+  font-size: 14px;
+  line-height: 1.4;
+  background: black;
+  width: 100%;
+  color: pink;
+}
+
+a {
+  text-decoration: none;
+  color: greenyellow;
+}
+
+a#share {
+  margin: 5px;
+  color: rgb(177, 90, 177);
+  font-size: 14px;
+  transition: 0.1s;
+}
+
+a#share:hover,
+a#share:active {
+  color: rgb(244, 152, 244);
+}
+
+span::selection {
+  background: rgb(244, 152, 244);
+  color: purple;
+}
+
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexcolumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div.helljar {
+  padding: 10px;
+}
+
+button {
+  font-family: 'Righteous', cursive;
+  font-size: 36px;
+  background: purple;
+  border: 0px;
+  border-radius: 3px;
+  padding: 15px;
+  color: pink;
+  transition: 0.1s;
+  outline: none;
+  letter-spacing: 3px;
+}
+
+button:hover {
+  color: rgb(247, 98, 123);
+}
+
+input,
+#code {
+  font-family: 'Righteous', cursive;
+  font-size: 14px;
+  background: pink;
+  color: purple;
+  border: 0px;
+  padding: 10px;
+  transition: 0.1s;
+  outline: none;
+}
+
+input::placeholder {
+  color: rgb(255, 97, 124);
+}
+
+div.butt {
+  display: none;
+}
+
+div.crap {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+div.mother-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+#god {
+  display: none;
+}
+
+div.damn {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div.damn > #amount {
+  font-size: 24px;
+}
+
+div.damn > #message {
+  font-size: 12px;
+  color: rgb(247, 98, 123);
+}
+
+button#fuck {
+  display: none;
+  font-family: 'Righteous', cursive;
+  font-size: 64px;
+  background: purple;
+  border: 0px;
+  border-radius: 3px;
+  padding: 15px;
+  letter-spacing: 5px;
+  color: pink;
+  transition: 0.1s;
+  outline: none;
+  animation-name: ugh;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes ugh {
+  0% {
+    color: red;
+  }
+  25% {
+    color: rgb(225, 121, 65);
+  }
+  50% {
+    color: rgb(232, 255, 163);
+  }
+  100% {
+    color: rgb(198, 115, 129);
+  }
+}
+
+button#fuck:disabled {
+  background: gray;
+  color: gray;
+}
+
+button#fuck:active,
+button#fuck:hover {
+  font-size: 48px;
+}
+
+button#new {
+  font-size: 36px;
+}
+
+button#new:hover {
+  font-size: 48px;
+}
+
+button#new:active {
+  font-size: 40px;
+}
+
+.error {
+  font-size: 14px;
+  color: rgb(255, 213, 0);
+  margin: 10px;
+}
+
+.animate-beat {
+  animation-name: beat;
+  animation-duration: 0.5s;
+  animation-iteration-count: 2;
+}
+
+@keyframes beat {
+  0% {
+    font-size: 14px;
+  }
+  50% {
+    font-size: 18px;
+  }
+  100% {
+    font-size: 14px;
+  }
+}
+
+i.jssocials-share-logo {
+  color: beige;
+}
+
+/* Loader */
+
+.lds-heart {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  transform: rotate(45deg);
+  transform-origin: 32px 32px;
+}
+.lds-heart div {
+  top: 23px;
+  left: 19px;
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background: rgb(247, 98, 123);
+  animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.lds-heart div:after,
+.lds-heart div:before {
+  content: ' ';
+  position: absolute;
+  display: block;
+  width: 26px;
+  height: 26px;
+  background: rgb(247, 98, 123);
+}
+.lds-heart div:before {
+  left: -17px;
+  border-radius: 50% 0 0 50%;
+}
+.lds-heart div:after {
+  top: -17px;
+  border-radius: 50% 50% 0 0;
+}
+@keyframes lds-heart {
+  0% {
+    transform: scale(0.95);
+  }
+  5% {
+    transform: scale(1.1);
+  }
+  39% {
+    transform: scale(0.85);
+  }
+  45% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}

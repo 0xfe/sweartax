@@ -1,0 +1,199 @@
+<html>
+  <head>
+    <title>
+      Get your own online Swear Jar at swear.tax
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <script>
+      // SCREWU: use test API keys
+      let SCREWU = true;
+      if (
+        window.location.protocol == 'http:' &&
+        window.location.hostname != 'localhost'
+      ) {
+        console.log('shit shit secure shit...');
+        window.location.protocol = 'https:';
+      }
+
+      if (window.location.hostname != 'localhost') {
+        SCREWU = false;
+      }
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Righteous"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://js.quid.works/v1/assets/quid.css" />
+    <link rel="stylesheet" href="index.css" />
+
+    <!-- Social Icons -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"
+    ></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <h3></h3>
+    </div>
+    <div class="crap">
+      <div class="helljar flexcolumn">
+        <button id="new">NEW JAR</button>
+        <br />
+        <div class="lds-heart"><div></div></div>
+        <div class="existing flexcolumn" style="padding: 10px;">
+          <span style="font-size: 18px; color: rgb(200, 97, 124)"
+            >Or use an existing swear jar</span
+          >
+          <input
+            type="text"
+            placeholder="Enter Jar Code"
+            style="margin-top: 5px"
+          />
+        </div>
+      </div>
+      <div id="spinner" class="lds-heart" style="display: none">
+        <div></div>
+      </div>
+      <span id="error" class="error"></span>
+      <div class="butt flexcolumn">
+        <div
+          class="explain flexcolumn"
+          style="padding: 10px; padding-bottom: 20px; font-size: 20px; max-width: 400px; text-align: center"
+        >
+          <span style="color:rgb(252, 76, 105)">10¢ a swear.</span>
+          <span style="font-size: 14px"
+            >Push the !@#$ button below everytime you screw up.</span
+          >
+          <span style="color: purple">All proceeds go to the EFF.</span>
+        </div>
+        <div class="shit flexcolumn">
+          <button id="fuck">!@#$</button>
+        </div>
+        <div id="god" class="damn">
+          <span id="amount">$0.00</span>
+          <span id="message">collected</span>
+        </div>
+        <div
+          class="showoff flexcolumn"
+          style="font-size: 20; text-align: center; padding-top: 30px;"
+        >
+          <span>Share this Jar</span>
+          <div id="shareIcons"></div>
+        </div>
+      </div>
+    </div>
+    <div class="mother-footer">
+      <span>Secure #@$! via &nbsp;</span>
+      <img src="https://js.quid.works/v1/assets/quid.png" width="20px" />
+    </div>
+    <script src="https://js.quid.works/v1/client.js"></script>
+    <script src="pennyjarjs.js"></script>
+    <script src="index.js"></script>
+    <script>
+      function showError(message) {
+        const errorEl = document.getElementById('error');
+        if (message && message !== '') {
+          console.error(message);
+        }
+
+        errorEl.innerText = message || '';
+        errorEl.classList.remove('animate-beat');
+        errorEl.classList.add('animate-beat');
+      }
+
+      const jarBuilder = new pennyjarjs.JarBuilder();
+      const spinnerEl = document.getElementById('spinner');
+      let thisJar;
+
+      const newEl = document.getElementById('new');
+      const helljarEl = document.getElementsByClassName('helljar')[0];
+      const codeEl = document.getElementById('code');
+      const buttEl = document.getElementsByClassName('butt')[0];
+      newEl.addEventListener('click', () => {
+        helljarEl.style.display = 'none';
+        spinnerEl.style.display = 'block';
+        jarBuilder
+          .create()
+          .then(jar => {
+            buttEl.style.display = 'block';
+            thisJar = jar;
+            window.history.pushState(
+              'object or string',
+              'This is our swear jar',
+              `?code=${thisJar.code}`
+            );
+            // codeEl.innerText = thisJar.code;
+            jsSocials.setDefaults('twitter', {
+              logo: 'fab fa-twitter'
+            });
+            jsSocials.setDefaults('facebook', {
+              logo: 'fab fa-facebook'
+            });
+            $('#shareIcons').jsSocials({
+              showLabel: false,
+              showCount: false,
+              shares: ['email', 'twitter', 'facebook']
+            });
+          })
+          .catch(e => {
+            helljarEl.style.display = 'block';
+            showError('Yikes! Trouble at home base.');
+          })
+          .finally(() => {
+            spinnerEl.style.display = 'none';
+          });
+      });
+
+      const amountEl = document.getElementById('amount');
+      const fuckEl = document.getElementById('fuck');
+      const godEl = document.getElementById('god');
+      init({
+        el: fuckEl,
+        onLoad: () => {
+          spinnerEl.style.display = 'none';
+          fuckEl.style.display = 'block';
+          godEl.style.display = 'flex';
+        },
+        onPay: receipt => {
+          spinnerEl.style.display = 'block';
+          showError('');
+          thisJar
+            .donate('me', receipt)
+            .then(resp => {
+              if (resp.success) {
+                amountEl.innerText = '$' + thisJar.total.toFixed(2);
+              } else {
+                showError('Yikes! Trouble at home base.');
+              }
+            })
+            .catch(e => {
+              showError('Yikes! Trouble at home base.');
+            })
+            .finally(() => {
+              spinnerEl.style.display = 'none';
+            });
+        }
+      });
+    </script>
+  </body>
+</html>

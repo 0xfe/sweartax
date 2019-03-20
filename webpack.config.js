@@ -9,7 +9,7 @@ const clientBundle = {
       $: 'zepto-webpack',
     }),
     new WriteFilePlugin(),
-    new CopyPlugin([{ from: '../www/*', to: 'dist/' }]),
+    new CopyPlugin([{ from: 'static/*', flatten: true }]),
   ],
   entry: {
     pennyjarjs: './index.js',

@@ -27,6 +27,7 @@ class API {
       },
     });
 
+    // eslint-disable-next-line
     console.log('PennyJar API at', baseURL);
   }
 

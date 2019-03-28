@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>
-      Get your own online Swear Jar at swear.tax
+      Swear with me for charity!
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
@@ -48,7 +48,7 @@
     <link
       type="text/css"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-flat.css"
+      href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-minima.css"
     />
   </head>
   <body>
@@ -56,11 +56,11 @@
       <h3></h3>
     </div>
     <div class="crap">
-      <div class="helljar flexcolumn">
-        <button id="new">NEW JAR</button>
+      <div class="helljar flexcolumn" style="display:none">
+        <button id="new">NEW SWEAR JAR</button>
         <br />
-        <div class="lds-heart"><div></div></div>
         <div class="existing flexcolumn" style="padding: 10px;">
+          <!--
           <span style="font-size: 18px; color: rgb(200, 97, 124)"
             >Or use an existing swear jar</span
           >
@@ -69,35 +69,37 @@
             placeholder="Enter Jar Code"
             style="margin-top: 5px"
           />
+          -->
         </div>
       </div>
-      <div id="spinner" class="lds-heart" style="display: none">
+      <div id="spinner" class="lds-heart" style="display: block">
         <div></div>
       </div>
+
       <span id="error" class="error"></span>
-      <div class="butt flexcolumn">
+
+      <div class="thejar flexcolumn">
         <div
           class="explain flexcolumn"
           style="padding: 10px; padding-bottom: 20px; font-size: 20px; max-width: 400px; text-align: center"
         >
-          <span style="color:rgb(252, 76, 105)">10¢ a swear.</span>
+          <span style="color:rgb(252, 76, 105)">10¢ a pop.</span>
           <span style="font-size: 14px"
-            >Push the !@#$ button below everytime you screw up.</span
+            >Push the button below everytime you screw up.</span
           >
-          <span style="color: purple">All proceeds go to the EFF.</span>
         </div>
-        <div class="shit flexcolumn">
-          <button id="fuck">!@#$</button>
+        <div class="flexcolumn">
+          <button id="swear">!@#$</button>
         </div>
-        <div id="god" class="damn">
+        <div id="total" class="damn">
           <span id="amount">$0.00</span>
           <span id="message">collected</span>
         </div>
         <div
           class="showoff flexcolumn"
-          style="font-size: 20; text-align: center; padding-top: 30px;"
+          style="font-size: 16; text-align: center; padding-top: 30px;"
         >
-          <span>Share this Jar</span>
+          <span>Share this jar and swear with friends!</span>
           <div id="shareIcons"></div>
         </div>
       </div>
@@ -107,7 +109,9 @@
       <img src="https://js.quid.works/v1/assets/quid.png" width="20px" />
     </div>
     <script src="https://js.quid.works/v1/client.js"></script>
-    <script src="pennyjarjs.js"></script>
-    <script src="index.js"></script>
+    <script src="swearjar.dev.js"></script>
+    <script>
+      swearjar.default(SCREWU);
+    </script>
   </body>
 </html>

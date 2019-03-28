@@ -4,21 +4,16 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const clientBundle = {
-  plugins: [
-    new webpack.ProvidePlugin({
-      $: 'zepto-webpack',
-    }),
-    new WriteFilePlugin(),
-    new CopyPlugin([{ from: 'static/*', flatten: true }]),
-  ],
+  plugins: [new WriteFilePlugin(), new CopyPlugin([{ from: 'static/*', flatten: true }])],
   entry: {
-    pennyjarjs: './index.js',
+    pennyjarjs: './pennyjarjs.js',
+    swearjar: './swearjar.js',
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist', // for webpack dev webserver
-    library: 'pennyjarjs',
+    library: '[name]',
   },
   module: {
     rules: [
@@ -67,7 +62,7 @@ module.exports = (env) => {
         filename: `[name].${tag}.js`,
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist',
-        library: 'pennyjarjs',
+        library: '[name]',
       };
     }
 

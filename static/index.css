@@ -87,7 +87,7 @@ input::placeholder {
   color: rgb(255, 97, 124);
 }
 
-div.butt {
+div.thejar {
   display: none;
 }
 
@@ -113,7 +113,7 @@ div.mother-footer {
   padding: 5px;
 }
 
-#god {
+#total {
   display: none;
 }
 
@@ -134,7 +134,7 @@ div.damn > #message {
   color: rgb(247, 98, 123);
 }
 
-button#fuck {
+button#swear {
   display: none;
   font-family: 'Righteous', cursive;
   font-size: 64px;
@@ -166,13 +166,13 @@ button#fuck {
   }
 }
 
-button#fuck:disabled {
+button#swear:disabled {
   background: gray;
   color: gray;
 }
 
-button#fuck:active,
-button#fuck:hover {
+button#swear:active,
+button#swear:hover {
   font-size: 48px;
 }
 
@@ -213,7 +213,7 @@ button#new:active {
 }
 
 i.jssocials-share-logo {
-  color: beige;
+  color: rgb(255, 97, 124);
 }
 
 /* Loader */

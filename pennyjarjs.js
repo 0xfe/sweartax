@@ -1,9 +1,5 @@
 import API from './api';
-
-function log(...args) {
-  // eslint-disable-next-line
-  console.log('L:PennyJar', ...args);
-}
+import * as H from './helpers';
 
 class PennyJar {
   constructor(code, total, options) {
@@ -19,21 +15,20 @@ class PennyJar {
     this.total = total;
     this.donors = {};
     this.api = this.options.api || new API();
-    log('Created PennyJar:', this.code);
+    H.log('Created PennyJar:', this.code);
   }
 
   load(data) {
-    this.code = data.code;
-    this.total = data.total;
-    this.donors = data.donors;
+    this.total = data.amount;
+    return this;
   }
 
   donate(who, receipt) {
-    log('Processing receipt:', receipt);
+    H.log('Processing receipt:', receipt);
     const donated = parseFloat(receipt.amount);
-    log(`Donating ${donated} to PennyJar ${this.code}...`);
+    H.log(`Donating ${donated} to PennyJar ${this.code}...`);
     return this.api.donate({ code: this.code, who, receipt }).then((resp) => {
-      log('Got response:', resp);
+      H.log('Got response:', resp);
       if (resp.success) {
         if (typeof this.donors[who] === 'number') {
           this.donors[who] += donated;
@@ -72,24 +67,22 @@ class JarBuilder {
   }
 
   create(who) {
-    log('Creating new PennyJar...');
-    return this.api.create(who).then((resp) => {
-      log('Got response:', resp);
+    H.log('Creating new PennyJar...');
+    return this.api.create({ who }).then((resp) => {
+      H.log('Got response:', resp);
       if (resp.success) {
-        return new PennyJar(resp.data.code, 0, {
-          api: this.api,
-        });
+        return new PennyJar(resp.data.code, 0, { api: this.api });
       }
       return resp;
     });
   }
 
-  lookup(code) {
-    log('Looking up PennyJar with code:', code);
-    return this.api.lookup(code).then((resp) => {
-      log('Got response:', resp);
+  load(code) {
+    H.log('Looking up PennyJar with code:', code);
+    return this.api.lookup({ code }).then((resp) => {
+      H.log('Got response:', resp);
       if (resp.success) {
-        return new PennyJar(resp.code).load(resp.data);
+        return new PennyJar(code, 0, { api: this.api }).load(resp.data);
       }
       return resp;
     });
